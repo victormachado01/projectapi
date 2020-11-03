@@ -1,0 +1,13 @@
+{
+  "name": "projectapi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/victormachado01/projectapi.git",
+  "author": "victorCamargo <victor.machado01@fatec.sp.gov.br>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.11"
+  }
+}
