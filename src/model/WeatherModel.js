@@ -1,6 +1,10 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const CityModel = require('./CityModel');
+const Schema = mongoose.Schema;
+const model = mongoose.model;
 
-const WeatherModel = mongoose.model('Weather', {
+const WeatherModel = Schema({
+  city: { type: Schema.Types.ObjectId, ref: "City" },
   temperature: Number,
   humidity: Number,
   date: Date,
@@ -10,6 +14,6 @@ const WeatherModel = mongoose.model('Weather', {
   pressure: Number,
   icon: String,
   sensation: Number,
-})  
+})
 
-module.exports = new WeatherModel
+module.exports = model('Weather', WeatherModel);
