@@ -4,7 +4,7 @@ const Weather = require('../model/WeatherModel')
 exports.get = async (req, res) => {
   const { city, UF } = req.params
   const response = await climaTempoHelper.getWeather(city, UF)
-  console.log(response)
+
   return res.status(response.status).json(response.data)
 }
 
