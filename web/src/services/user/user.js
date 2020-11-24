@@ -1,9 +1,9 @@
 import api from '../api';
 
 const login = async ({ email, pass }) => {
-  return api.post('/user/authenticate', {
+  return api.post('/user/auth', {
     email,
-    pass,
+    password: pass,
   });
 };
 

@@ -1,32 +1,47 @@
-import React from 'react'
-
+import React, { useEffect } from 'react'
 import './App.css';
-import AddFarmModal from './views/AddFarms' 
 import Login from './views/Login'
+import Register from './views/RegisterUser'
+import Home from './views/Home';
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
+import { useState } from 'react';
 
 function App() {
+  const [auth, setAuth] = useState(false)
+  const [user, setUser] = useState()
+  const user_id = user && user._id
+
+  useEffect(() => {
+    const auth = () => {
+      return localStorage.getItem('user');
+    }
+    if(auth() !== null) {
+      setAuth(true)
+      setUser(JSON.parse(auth()))
+    }
+  }, [auth, user_id])
 
   return (
-    <Router>
-      <Switch>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/cadastro">
-        </Route>
-        <Route path="/">
-          
-          <AddFarmModal/>
-        </Route>
-     </Switch>
-    </Router>
+    !auth ? 
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route path="/cadastro" component={Register} />
+        </Switch>
+      </Router>
+      :
+      <Router>
+        <Switch>
+          <Route path="/">
+            <Home setAuth={setAuth} user={user}/>
+          </Route>
+        </Switch>
+      </Router>
   );
 }
 
